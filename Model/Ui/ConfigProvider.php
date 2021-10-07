@@ -58,6 +58,7 @@ class ConfigProvider implements ConfigProviderInterface
                     'scriptUri' => $this->config->getScriptUri(),
                     'decimalSeparator' => $this->getDecimalSeparator(),
                     'thousandSeparator' => $this->getThousandsSeparator(),
+                    'locale' => $this->getLocale(),
                     'rebranding' => true
                 ]
             ]
@@ -82,5 +83,10 @@ class ConfigProvider implements ConfigProviderInterface
     public function getThousandsSeparator()
     {
         return $this->formatter->getSymbol(\NumberFormatter::GROUPING_SEPARATOR_SYMBOL);
+    }
+
+    public function getLocale()
+    {
+        return str_replace('_','-',$this->localeResolver->getLocale());
     }
 }
